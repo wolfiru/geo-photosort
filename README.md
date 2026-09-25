@@ -34,7 +34,7 @@ pip install -r requirements.txt -r requirements-gui.txt
 ### Linux / macOS
 
 ```bash
-./install.sh
+bash install.sh
 ```
 
 Installiert nur `requirements.txt` (ohne `customtkinter`) – die GUI ist Windows-only und wird hier nicht benoetigt. Manuell:
@@ -66,7 +66,7 @@ Unter Linux/macOS gibt es dafuer keine Entsprechung (verwendet `os.startfile`, e
 
 ### Interaktiver Assistent (Kommandozeile)
 
-Windows: Doppelklick auf `Geosort_starten.bat`. Linux/macOS: `./geosort_starten.sh`. Oder ohne Parameter starten:
+Windows: Doppelklick auf `Geosort_starten.bat`. Linux/macOS: `bash geosort_starten.sh`. Oder ohne Parameter starten:
 
 ```bash
 python -m geosort
