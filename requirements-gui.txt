@@ -1,0 +1,2 @@
+# Nur fuer die grafische Oberflaeche (geosort.gui), Windows-only.
+customtkinter>=5.2

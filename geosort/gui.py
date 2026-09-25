@@ -270,6 +270,14 @@ class GeoSortGUI(ctk.CTk):
 
 
 def main():
+    if sys.platform != "win32":
+        print(
+            "Die grafische Oberflaeche (geosort.gui) ist nur unter Windows verfuegbar "
+            "(nutzt os.startfile zum Oeffnen des Zielordners).\n"
+            "Unter Linux/macOS bitte den interaktiven Assistenten oder die Kommandozeile "
+            "verwenden: python -m geosort"
+        )
+        sys.exit(1)
     app = GeoSortGUI()
     app.mainloop()
 

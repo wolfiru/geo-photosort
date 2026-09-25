@@ -38,13 +38,28 @@ def _auto_detect_exiftool() -> Optional[str]:
     found = shutil.which("exiftool") or shutil.which("exiftool.exe")
     if found:
         return found
-    candidates = [
-        Path(os.environ.get("LOCALAPPDATA", "")) / "Programs" / "ExifTool" / "ExifTool.exe",
-    ]
-    for candidate in candidates:
-        if candidate.is_file():
-            return str(candidate)
+    if sys.platform == "win32":
+        candidates = [
+            Path(os.environ.get("LOCALAPPDATA", "")) / "Programs" / "ExifTool" / "ExifTool.exe",
+        ]
+        for candidate in candidates:
+            if candidate.is_file():
+                return str(candidate)
     return None
+
+
+def _exiftool_install_hint() -> str:
+    if sys.platform == "win32":
+        return (
+            "Installation: winget install -e --id OliverBetz.ExifTool\n"
+            "(oder Download von https://exiftool.org)"
+        )
+    if sys.platform == "darwin":
+        return "Installation: brew install exiftool\n(oder Download von https://exiftool.org)"
+    return (
+        "Installation (Debian/Ubuntu): sudo apt install libimage-exiftool-perl\n"
+        "(andere Distributionen: siehe https://exiftool.org)"
+    )
 
 
 def resolve_exiftool_path(
@@ -73,15 +88,13 @@ def resolve_exiftool_path(
 
     if not interactive:
         raise RuntimeError(
-            "exiftool wurde nicht gefunden.\n"
-            "Installation: winget install -e --id OliverBetz.ExifTool\n"
+            f"exiftool wurde nicht gefunden.\n{_exiftool_install_hint()}\n"
             "Danach erneut starten, oder Pfad mit --exiftool-path angeben."
         )
 
     print()
     print("exiftool wurde nicht gefunden.")
-    print("Installation: winget install -e --id OliverBetz.ExifTool")
-    print("(oder Download von https://exiftool.org)")
+    print(_exiftool_install_hint())
     while True:
         path = input("Voller Pfad zur exiftool.exe (leer = abbrechen): ").strip().strip('"')
         if not path:

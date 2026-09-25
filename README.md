@@ -1,6 +1,6 @@
 # Geo-Photosort
 
-Sortiert Fotos und Videos anhand ihrer GPS-Metadaten geografisch in Ordner.
+Sortiert Fotos und Videos anhand ihrer GPS-Metadaten geografisch in Ordner. Laeuft unter Windows, Linux und macOS; die grafische Oberflaeche ist **Windows-only**, Kommandozeile und interaktiver Assistent funktionieren ueberall.
 
 ![Geo-Photosort GUI](docs/screenshot.png)
 
@@ -21,31 +21,54 @@ GeoSort/
 
 ## Installation
 
+### Windows
+
+Doppelklick auf `install.bat` (richtet venv ein, installiert alle Abhaengigkeiten inkl. GUI). Alternativ manuell:
+
 ```powershell
 python -m venv .venv
 .venv\Scripts\activate
+pip install -r requirements.txt -r requirements-gui.txt
+```
+
+### Linux / macOS
+
+```bash
+./install.sh
+```
+
+Installiert nur `requirements.txt` (ohne `customtkinter`) – die GUI ist Windows-only und wird hier nicht benoetigt. Manuell:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Zusaetzlich wird **exiftool** benoetigt (liest GPS-Daten aus Fotos *und* Videos):
+### exiftool
 
-```powershell
-winget install -e --id OliverBetz.ExifTool
-```
+Wird in allen Faellen zusaetzlich benoetigt (liest GPS-Daten aus Fotos *und* Videos):
 
-Alternativ von https://exiftool.org herunterladen. Wird exiftool nicht automatisch gefunden, fragt Geosort beim Start einmalig nach dem Pfad und merkt sich ihn danach selbststaendig in `geosort_settings.json` (wird automatisch angelegt, keine manuelle Bearbeitung noetig).
+- Windows: `winget install -e --id OliverBetz.ExifTool`
+- macOS: `brew install exiftool`
+- Debian/Ubuntu: `sudo apt install libimage-exiftool-perl`
+- Alternativ: Download von https://exiftool.org
+
+Wird exiftool nicht automatisch gefunden, fragt Geosort beim Start einmalig nach dem Pfad und merkt sich ihn danach selbststaendig in `geosort_settings.json` (wird automatisch angelegt, keine manuelle Bearbeitung noetig).
 
 ## Benutzung
 
-### Grafische Oberflaeche
+### Grafische Oberflaeche (nur Windows)
 
 Doppelklick auf `Geosort_GUI.bat`. Quell-/Zielordner per Dialog waehlen, Optionen einstellen, "Scan (Vorschau)" zeigt das Ergebnis im Log-Fenster, "Jetzt ausfuehren" fragt vor dem eigentlichen Kopieren/Verschieben nochmal nach.
 
+Unter Linux/macOS gibt es dafuer keine Entsprechung (verwendet `os.startfile`, ein Windows-only-API) – dort den interaktiven Assistenten oder die Kommandozeile nutzen.
+
 ### Interaktiver Assistent (Kommandozeile)
 
-Doppelklick auf `Geosort_starten.bat`, oder ohne Parameter starten:
+Windows: Doppelklick auf `Geosort_starten.bat`. Linux/macOS: `./geosort_starten.sh`. Oder ohne Parameter starten:
 
-```powershell
+```bash
 python -m geosort
 ```
 

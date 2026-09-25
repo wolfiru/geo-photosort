@@ -24,7 +24,7 @@ if not exist ".venv" (
 
 echo Installiere Abhaengigkeiten ...
 ".venv\Scripts\python.exe" -m pip install --upgrade pip --quiet
-".venv\Scripts\python.exe" -m pip install -r requirements.txt --quiet
+".venv\Scripts\python.exe" -m pip install -r requirements.txt -r requirements-gui.txt --quiet
 
 echo.
 echo Pruefe exiftool ...
