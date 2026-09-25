@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+geosort_settings.json
+dist/
+sortall.cmd
+*.zip

@@ -1,0 +1,15 @@
+# Beispiel-Konfiguration fuer Geo-Photosort
+# Kopieren nach z.B. config.yaml und anpassen, dann:
+#   python -m geosort --config config.yaml
+
+source_dir: "D:/Fotos/Urlaub2025"
+output_dir: null              # null = <source_dir>/GeoSort
+
+bubble_distance_km: 20        # Schwellwert fuer Bubbles (Land/Bundesland kommt vom Geocoding)
+
+mode: copy                    # copy oder move
+dry_run: true                 # erst simulieren, dann auf false setzen
+
+language: de                  # Sprache der Ortsnamen
+user_agent: "Geo-Photosort/1.0 (deine-email@example.com)"
+exiftool_path: exiftool       # oder voller Pfad zu exiftool.exe
