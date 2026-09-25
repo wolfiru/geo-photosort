@@ -1,6 +1,10 @@
 # Geo-Photosort
 
-Sortiert Fotos und Videos anhand ihrer GPS-Metadaten geografisch in Ordner:
+Sortiert Fotos und Videos anhand ihrer GPS-Metadaten geografisch in Ordner.
+
+![Geo-Photosort GUI](docs/screenshot.png)
+
+Ordnerstruktur:
 
 ```
 GeoSort/
@@ -84,10 +88,6 @@ Wurde bereits ohne diese Option sortiert, muss nicht neu kopiert werden: `--tag-
 ```powershell
 python -m geosort --source "D:\Fotos\Urlaub2025" --tag-existing
 ```
-
-### Direktlauf ohne Rueckfragen
-
-`sortall.cmd` sortiert einen fest hinterlegten Ordner per Doppelklick in einem Rutsch (kopieren + Orts-Tags), ohne jegliche Rueckfrage. Pfad und Optionen darin nach Bedarf anpassen.
 
 ## Bekannte Einschraenkungen
 
